@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title><%= restaurant.name %></title>
+  <style>
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<body>
+  <script>
+    function goBack() {window.history.back();}
+  </script>
+
+  <div class="w3-container w3-teal">
+    <h1><%= restaurant.name %></h1>
+  </div>
+  <% if(restaurant.photo){ %>
+    <img src="data: <%= restaurant.mimetype %>;base64,<%= restaurant.photo %>"class="w3-image w3-border w3-padding" style="width:100%">
+  <% } %>
+  <div class="w3-container">
+    <p>
+    <label class="w3-label w3-validate">Borough: </label><% if(restaurant.borough) %> <%= restaurant.borough %></p>
+    <label class="w3-label w3-validate">Cuisine: </label><% if(restaurant.cuisine) %> <%= restaurant.cuisine %></p>
+    <label class="w3-label w3-validate">Street: </label><% if(restaurant.address){ %><% if(restaurant.address.street) %> <%= restaurant.address.street %><% } %></p>
+    <label class="w3-label w3-validate">Building: </label><% if(restaurant.address){%> <% if(restaurant.address.building) %> <%= restaurant.address.building %><% } %></p>
+    <label class="w3-label w3-validate">Zipcode: </label><% if(restaurant.address){%> <% if(restaurant.address.zipcode) %> <%= restaurant.address.zipcode %><% } %></p>
+    <label class="w3-label w3-validate">GPS: </label>[<% if(restaurant.address){%><% if(restaurant.address.coord[0]) %><%= restaurant.address.coord[0] %><% } %>,<% if(restaurant.address){%><% if(restaurant.address.coord[1]) %><%= restaurant.address.coord[1] %><% } %>]</p>
+    <label class="w3-label w3-validate">Rating: </label></p>
+    <% if(restaurant.grades){ %>
+      <% if(restaurant.grades.length > 0){ %>
+      <ol>
+        <% for (i in restaurant.grades){ %>
+          <li><%= restaurant.grades[i].score %> (<%= restaurant.grades[i].user %>)</li>
+        <% } %>
+      </ol>
+      <% } %>
+    <% } %>
+    <p>
+    <label class="w3-label w3-validate">Created by: </label><%= restaurant.owner %></p>
+    <p>
+  </div>
+    <% if(restaurant.address.coord[0] && restaurant.address.coord[1]){ %>
+      <a href="/gmap?lat=<%= restaurant.address.coord[1] %>&lon=<%= restaurant.address.coord[0] %>&title=<%= restaurant.name %>">Google Map</a>
+    <% } %>
+  <div class="w3-container">
+    <a href="/rate?_id=<%= restaurant._id%>" style="text-decoration: none">
+      <button class="w3-btn w3-section w3-teal w3-ripple">Rate</button>
+    </a>
+    <a href="/change?_id=<%= restaurant._id%>" style="text-decoration: none">
+      <button class="w3-btn w3-section w3-teal w3-ripple">Edit</button>
+    </a>
+    <a href="/remove?_id=<%= restaurant._id%>" style="text-decoration: none">
+      <button class="w3-btn w3-section w3-teal w3-ripple">Delete</button>
+    </a>
+    <button class="w3-btn w3-section w3-teal w3-ripple" onclick="goBack()">Go Back</button>
+  </div>
+</body>
+</html>
