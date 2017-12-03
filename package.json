@@ -1,0 +1,18 @@
+{
+  "name": "restaurant",
+  "description": "NodeJS Session",
+  "author": "calvinng",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-session": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-fileupload": "*",
+    "mongodb": "*"
+  },
+  "engine": "node >= 0.10.0",
+  "scripts": {
+    "start": "node server"
+  }
+}
