@@ -1,0 +1,17 @@
+<html>
+<title>Rate </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<body>
+  <div class="w3-container w3-teal">
+    <h2>Rate </h2>
+  </div>
+  <p>
+  <form class="w3-container" acton="/rate?_id=<%= id %>" method="post">
+    <input type="hidden" name="_id" value=<%= id %>>
+    <label>Score (1-10):</label>
+    <input class="w3-input" type="number" name="score" min=1 max=10 required>
+    <button class="w3-btn">Rate</button>
+  </form>
+</body>
+</html>
